@@ -1,4 +1,6 @@
 # go-url-shortener
+[![Build Status](https://travis-ci.org/allisson/go-url-shortener.svg)](https://travis-ci.org/allisson/go-url-shortener)
+
 Golang url shortener using clean code.
 
 Features:
