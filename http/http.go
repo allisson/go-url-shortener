@@ -27,14 +27,10 @@ type Handler struct {
 }
 
 func (h *Handler) serializer(contentType string) shortener.RedirectSerializer {
-	switch contentType {
-	case "application/x-msgpack":
+	if contentType == "application/x-msgpack" {
 		return &ms.Redirect{}
-	case "application/json":
-		return &js.Redirect{}
-	default:
-		return &js.Redirect{}
 	}
+	return &js.Redirect{}
 }
 
 // Get handler
