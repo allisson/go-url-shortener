@@ -8,10 +8,14 @@ services:
   - mongodb
 
 env:
-  - MONGODB_URL=mongodb://localhost/shortener
-  - MONGODB_TIMEOUT=30
-  - MONGODB_DATABASE=shortener
-  - REDIS_URL=redis://localhost:6379
+  global:
+    - MONGODB_URL=mongodb://localhost/shortener
+    - MONGODB_TIMEOUT=30
+    - MONGODB_DATABASE=shortener
+    - REDIS_URL=redis://localhost:6379
+
+before_install:
+  - go get
 
 script:
   - make test
