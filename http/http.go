@@ -56,7 +56,7 @@ func (h *Handler) Post(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
-	redirect, err := h.serializer(contentType).Encode(requestBody)
+	redirect, err := h.serializer(contentType).Decode(requestBody)
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
@@ -70,7 +70,7 @@ func (h *Handler) Post(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
-	responseBody, err := h.serializer(contentType).Decode(redirect)
+	responseBody, err := h.serializer(contentType).Encode(redirect)
 	if err != nil {
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return

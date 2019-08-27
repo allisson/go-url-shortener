@@ -52,7 +52,7 @@ func TestHandler(t *testing.T) {
 
 	t.Run("Post with json", func(t *testing.T) {
 		serializer := js.Redirect{}
-		body, _ := serializer.Decode(redirect)
+		body, _ := serializer.Encode(redirect)
 		redirectService := mocks.RedirectService{}
 		redirectService.On("Store", redirect).Return(nil)
 		handler := NewHandler(&redirectService)
@@ -70,7 +70,7 @@ func TestHandler(t *testing.T) {
 
 	t.Run("Post with msgpack", func(t *testing.T) {
 		serializer := ms.Redirect{}
-		body, _ := serializer.Decode(redirect)
+		body, _ := serializer.Encode(redirect)
 		redirectService := mocks.RedirectService{}
 		redirectService.On("Store", redirect).Return(nil)
 		handler := NewHandler(&redirectService)
@@ -88,7 +88,7 @@ func TestHandler(t *testing.T) {
 
 	t.Run("Post with wrong content type", func(t *testing.T) {
 		serializer := ms.Redirect{}
-		body, _ := serializer.Decode(redirect) // msgpack body
+		body, _ := serializer.Encode(redirect) // msgpack body
 		redirectService := mocks.RedirectService{}
 		redirectService.On("Store", redirect).Return(nil)
 		handler := NewHandler(&redirectService)
